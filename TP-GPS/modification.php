@@ -44,6 +44,7 @@ include "classes/User.php"; ?>
           <li class="active"><a href="accueil.php">Home</a></li>
           <li><a href="modification.php">Compte</a></li>
           <li><a href="Admin.php">Admin</a></li>
+          <li><a href="fonctions/deconnexion.php">Deconnexion</a></li>
         </ul>
       </div>
     </div>
