@@ -28,7 +28,7 @@ include "classes/User.php"; ?>
 
 <body data-spy="scroll" data-offset="0" data-target="#navigation">
 
-  <!-- Fixed navbar -->
+  <!-- Barre de navigation -->
   <div id="navigation" class="navbar navbar-default navbar-fixed-top">
     <div class="container">
       <div class="navbar-header">
@@ -49,47 +49,65 @@ include "classes/User.php"; ?>
     </div>
   </div>
   <?php
-    if (isset($_POST["btnConnexion"])) {
-        $util = new User(Connexion("192.168.65.35","LOWRANCE","AZERTY","Lawrence"));
-        if ($util->modifUtilisateur($_POST["txtUser"],$_POST["pwdUser"]) == true) {
-            echo "Les données ont été modifiées";
-    
-            echo '<a href="accueil.php">accueil</a>';
-            
-        }
-    } else {
-    ?>
-    <div>
-        <form class="box" method="post">
-            <h1 class="box-title">Modiffication</h1>
-            <input type="text" class="box-input" name="txtUser" placeholder="Nom d'utilisateur" required>
-            <input type="password" class="box-input" name="pwdUser" placeholder="Mot de passe" required>
-            <button type="submit" class="box-button" name="btnConnexion" value="Connexion">modification</button>
-        </form>
-    </div>
-    <?php
+  //si le bouton de création a été utilisé
+  if (isset($_POST["btnCreation"])) {
+    $util = new User(Connexion("192.168.65.35", "LOWRANCE", "AZERTY", "Lawrence"));
+    if ($util->creationUtilisateur($_POST["txtUser"], $_POST["pwdUser"]) == true) {
+      echo "Les données ont été modifiées";
+      echo '<a href="accueil.php">accueil</a>';
     }
-    ?>
-    <?php
-    if (isset($_POST["btnSuppression"])) {
-        $util = new User(Connexion("192.168.65.35","LOWRANCE","AZERTY","Lawrence"));
-        if ($util->suppressionUtilisateur($_POST["txtUser"],$_POST["pwdUser"]) == true) {
-            echo "Les données ont été supprimés";
-    
-            echo '<a href="accueil.php">accueil</a>';
-            
-        }
-    } else {
-    ?>
+  } else {
+    //formulaire de création
+  ?>
     <div>
-        <form class="box" method="post">
-            <h1 class="box-title">Suppression</h1>
-            <input type="text" class="box-input" name="txtUser" placeholder="Nom d'utilisateur" required>
-            <input type="password" class="box-input" name="pwdUser" placeholder="Mot de passe" required>
-            <button type="submit" class="box-button" name="btnSuppression" value="Connexion">Suppression</button>
-        </form>
+      <form class="box" method="post">
+        <h1 class="box-title">Creation</h1>
+        <input type="text" class="box-input" name="txtUser" placeholder="Nom d'utilisateur" required>
+        <input type="password" class="box-input" name="pwdUser" placeholder="Mot de passe" required>
+        <button type="submit" class="box-button" name="btnCreation" value="Creation">Creation</button>
+      </form>
     </div>
-    <?php
+  <?php
+  }
+  //si le bouton de modification a été utilisé
+  if (isset($_POST["btnModif"])) {
+    $util = new User(Connexion("192.168.65.35", "LOWRANCE", "AZERTY", "Lawrence"));
+    if ($util->modifUtilisateur($_POST["txtUser"], $_POST["pwdUser"]) == true) {
+      echo "Les données ont été modifiées";
+      echo '<a href="accueil.php">accueil</a>';
     }
-    ?>
+  } else {
+    //formulaire de modification
+  ?>
+    <div>
+      <form class="box" method="post">
+        <h1 class="box-title">Modification</h1>
+        <input type="text" class="box-input" name="txtUser" placeholder="Nom d'utilisateur" required>
+        <input type="password" class="box-input" name="pwdUser" placeholder="Mot de passe" required>
+        <button type="submit" class="box-button" name="btnModif" value="Modification">Modification</button>
+      </form>
+    </div>
+  <?php
+  }
+  //si le bouton de suppression a été utilisé
+  if (isset($_POST["btnSuppression"])) {
+    $util = new User(Connexion("192.168.65.35", "LOWRANCE", "AZERTY", "Lawrence"));
+    if ($util->suppressionUtilisateur($_POST["txtUser"], $_POST["pwdUser"]) == true) {
+      echo "Les données ont été supprimés";
+      echo '<a href="accueil.php">accueil</a>';
+    }
+  } else {
+    //formulaire de suppression
+  ?>
+    <div>
+      <form class="box" method="post">
+        <h1 class="box-title">Suppression</h1>
+        <input type="text" class="box-input" name="txtUser" placeholder="Nom d'utilisateur" required>
+        <input type="password" class="box-input" name="pwdUser" placeholder="Mot de passe" required>
+        <button type="submit" class="box-button" name="btnSuppression" value="Suppression">Suppression</button>
+      </form>
+    </div>
+  <?php
+  }
+  ?>
 </body>

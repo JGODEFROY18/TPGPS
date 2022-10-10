@@ -16,13 +16,26 @@ include "TP-GPS/classes/User.php"; ?>
 
 <body>
     <?php
+    //si l'utilisateur a appuyé sur le bouton de connexion
     if (isset($_POST["btnConnexion"])) {
-        $util = new User(Connexion("192.168.65.35","LOWRANCE","AZERTY","Lawrence"));
+        $util = new User(Connexion("192.168.65.35", "LOWRANCE", "AZERTY", "Lawrence"));
         if ($util->autorisation() == true) {
+            //si l'utilisateur est reconnu dans la base de données
             header("Location: TP-GPS/accueil.php");
-        }
-    } else {
+        } else {
+            // on affiche le formulaire de connexion
     ?>
+            <form class="box" method="post">
+                <h1 class="box-title">Connexion</h1>
+                <input type="text" class="box-input" name="txtUser" placeholder="Nom d'utilisateur" required>
+                <input type="password" class="box-input" name="pwdUser" placeholder="Mot de passe" required>
+                <button type="submit" class="box-button" name="btnConnexion" value="Connexion">Connexion</button>
+                <?php echo "<p class='errorMessage'>Nom d'utilisateur ou mot de passe inconnu</p>"; ?>
+            </form>
+        <?php }
+    } else {
+        // on affiche le formulaire de connexion
+        ?>
         <form class="box" method="post">
             <h1 class="box-title">Connexion</h1>
             <input type="text" class="box-input" name="txtUser" placeholder="Nom d'utilisateur" required>

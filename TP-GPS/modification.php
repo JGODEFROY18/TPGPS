@@ -49,25 +49,26 @@ include "classes/User.php"; ?>
     </div>
   </div>
   <?php
-    if (isset($_POST["btnConnexion"])) {
-        $util = new User(Connexion("192.168.65.35","LOWRANCE","AZERTY","Lawrence"));
-        if ($util->modifUtilisateur($_POST["txtUser"],$_POST["pwdUser"]) == true) {
-            echo "Les données ont été modifiées";
-    
-            echo '<a href="accueil.php">accueil</a>';
-            
-        }
-    } else {
-    ?>
-  <div>
-        <form class="box" method="post">
-            <h1 class="box-title">Modiffication</h1>
-            <input type="text" class="box-input" name="txtUser" placeholder="Nom d'utilisateur" required>
-            <input type="password" class="box-input" name="pwdUser" placeholder="Mot de passe" required>
-            <button type="submit" class="box-button" name="btnConnexion" value="Connexion">modification</button>
-        </form>
-    </div>
-    <?php
+  //si le bouton de modification a été utilisé
+  if (isset($_POST["btnConnexion"])) {
+    $util = new User(Connexion("192.168.65.35", "LOWRANCE", "AZERTY", "Lawrence"));
+    if ($util->modifUtilisateur($_POST["txtUser"], $_POST["pwdUser"]) == true) {
+      echo "Les données ont été modifiées";
+
+      echo '<a href="accueil.php">accueil</a>';
     }
-    ?>
+  } else {
+    //formulaire de modification
+  ?>
+    <div>
+      <form class="box" method="post">
+        <h1 class="box-title">Modiffication</h1>
+        <input type="text" class="box-input" name="txtUser" placeholder="Nom d'utilisateur" required>
+        <input type="password" class="box-input" name="pwdUser" placeholder="Mot de passe" required>
+        <button type="submit" class="box-button" name="btnConnexion" value="Connexion">modification</button>
+      </form>
+    </div>
+  <?php
+  }
+  ?>
 </body>
